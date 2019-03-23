@@ -45,7 +45,7 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
               style: CustomStyles.dateTitle,
             ),
             Padding(
-              padding: const EdgeInsets.all(Dimens.smallSpacing),
+              padding: const EdgeInsets.all(Dimens.mediumSpacing),
               child: Icon(
                 Icons.arrow_forward_ios,
                 size: Dimens.tinyIconSize,
