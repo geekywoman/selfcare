@@ -1,6 +1,6 @@
 # selfcare
 
-SelfCare projecrt - health care hackathon
+SelfCare project - Nordic Health care Hackathon
 
 ## Getting Started
 
