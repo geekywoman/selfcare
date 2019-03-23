@@ -10,31 +10,15 @@ import 'package:selfcare/resources/dimens.dart';
 import 'package:selfcare/resources/styles.dart';
 import 'package:intl/intl.dart';
 
-class MyTreatmentPage extends StatefulWidget {
+class TreatmentBody extends StatefulWidget {
   @override
   _MyTreatmentPageStage createState() => _MyTreatmentPageStage();
 }
 
-class _MyTreatmentPageStage extends State<MyTreatmentPage> {
-
+class _MyTreatmentPageStage extends State<TreatmentBody> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('My treatment'),
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(
-                Icons.settings,
-              ),
-              onPressed: () {
-                Navigator.push(context,
-                    CupertinoPageRoute(builder: (context) => SettingsPage()));
-              })
-        ],
-      ),
-      body: _buildBody(),
-    );
+    return _buildBody();
   }
 
   Widget _buildBody() {

@@ -6,6 +6,7 @@ class Dimens {
 
   static const double tinyIconSize = 16.0;
 
+  static const double menuIconSize = 25.0;
   static const double smallIconSize = 30.0;
   static const double largeIconSize = 50.0;
   static const double logoIconSize = 80.0;

@@ -1,11 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:selfcare/api/network_util.dart';
-import 'package:selfcare/model/patient_response.dart';
-import 'package:selfcare/model/return_data.dart';
-import 'package:selfcare/pages/my_treatment_page.dart';
+import 'package:selfcare/pages/container_page.dart';
 import 'package:selfcare/resources/colors.dart';
 import 'package:selfcare/resources/dimens.dart';
 import 'package:selfcare/resources/images.dart';
@@ -43,15 +39,13 @@ class _LoginState extends State<LoginPage> {
     );
   }
 
-//  _buildLoginButton()
   Widget _buildLoginField() {
     return Container(
       margin: EdgeInsets.only(top: Dimens.mediumSpacing),
       child: TextFormField(
         initialValue: '2207399999',
         decoration: InputDecoration(
-          prefixIcon:
-              Icon(Icons.person, size: Dimens.smallIconSize),
+          prefixIcon: Icon(Icons.person, size: Dimens.smallIconSize),
           hintText: 'Social security number',
           labelText: 'Social security number',
         ),
@@ -93,7 +87,8 @@ class _LoginState extends State<LoginPage> {
                   child: Align(
                     alignment: Alignment(0.25, 0.0),
                     child: Container(
-                        margin: const EdgeInsets.only(left: Dimens.smallSpacing),
+                        margin:
+                            const EdgeInsets.only(left: Dimens.smallSpacing),
                         width: 20.0,
                         height: 20.0,
                         child: CircularProgressIndicator(
@@ -123,19 +118,15 @@ class _LoginState extends State<LoginPage> {
       _isLoading = true;
     });
 
-    //todo network call
-
     NetworkUtils.instance.getPatient().then((value) {
       print("success");
       NetworkUtils.instance.returnData = value.returnData;
       _navigateToMyTreatment();
-
     });
-
   }
 
   void _navigateToMyTreatment() {
     Navigator.pushReplacement(
-        context, CupertinoPageRoute(builder: (context) => MyTreatmentPage()));
+        context, CupertinoPageRoute(builder: (context) => ContainerPage()));
   }
 }
