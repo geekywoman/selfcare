@@ -49,12 +49,13 @@ flutter:
   assets:
   - assets/logo.svg
   - assets/settings.svg
+  - assets/medicine.svg
   - assets/menu/menu_appointment.svg
   - assets/menu/menu_chat.svg
   - assets/menu/menu_clinical_result.svg
   - assets/menu/menu_medical_history.svg
   - assets/menu/menu_my_treatment.svg
-  - assets/Trofeo.flr2d
+  - assets/trophee.flr
 
   fonts:
   - family: Archivo

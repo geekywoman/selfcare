@@ -1,15 +1,15 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:selfcare/api/network_util.dart';
+import 'package:selfcare/model/return_data.dart';
 import 'package:selfcare/model/treatment.dart';
 import 'package:selfcare/model/treatment_item.dart';
 import 'package:selfcare/model/treatment_plan.dart';
-import 'package:selfcare/pages/settings_page.dart';
-import 'package:selfcare/api/network_util.dart';
-import 'package:selfcare/model/return_data.dart';
+import 'package:selfcare/pages/treatment_details_page.dart';
 import 'package:selfcare/resources/dimens.dart';
 import 'package:selfcare/resources/styles.dart';
-import 'package:intl/intl.dart';
-import 'package:flare_flutter/flare_actor.dart';
 
 class TreatmentBody extends StatefulWidget {
   @override
@@ -17,17 +17,15 @@ class TreatmentBody extends StatefulWidget {
 }
 
 class _MyTreatmentPageStage extends State<TreatmentBody> {
-  bool allChecked = true;
-
   @override
   Widget build(BuildContext context) {
     return _buildBody();
   }
 
   Widget _buildBody() {
-
     ReturnData returnData = NetworkUtils.instance.returnData;
     List<TreatmentPlan> treatmentPlans = returnData.treatmentPlans;
+    treatmentPlans = _preCheckAllDataExceptFurosemide(treatmentPlans);
     return Column(
       children: <Widget>[
         Row(
@@ -35,30 +33,57 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(Dimens.mediumSpacing),
-              child: Icon(Icons.arrow_back_ios, size: Dimens.tinyIconSize,),
+              child: Icon(
+                Icons.arrow_back_ios,
+                size: Dimens.tinyIconSize,
+              ),
             ),
-            Text(getDate(), style: CustomStyles.dateTitle,),
+            Text(
+              getDate(),
+              style: CustomStyles.dateTitle,
+            ),
             Padding(
               padding: const EdgeInsets.all(Dimens.smallSpacing),
-              child: Icon(Icons.arrow_forward_ios, size: Dimens.tinyIconSize,),
+              child: Icon(
+                Icons.arrow_forward_ios,
+                size: Dimens.tinyIconSize,
+              ),
             ),
           ],
         ),
         Container(
-          height: 50.0,
-            width: 50.0,
-            child: FlareActor("assets/Trofeo.flr2d", animation: "trophy_animation", alignment: Alignment.center,
-              fit: BoxFit.contain,)
+          width: Dimens.logoIconSize,
+          height: 100.0,
+          child: Visibility(
+            child: FlareActor(
+              "assets/trophee.flr",
+              alignment: Alignment.center,
+              fit: BoxFit.fitWidth,
+              animation: "animation",
+            ),
+            visible: _areAllTreatmentChecked(treatmentPlans),
+          ),
         ),
         _buildTreatmentPlans(treatmentPlans),
       ],
     );
   }
 
+  bool _areAllTreatmentChecked(List<TreatmentPlan> treatmentPlans) {
+    bool result = true;
+    treatmentPlans.forEach((treatmentPlan) {
+      treatmentPlan.treatmentItems.forEach((treatmentItem) {
+        treatmentItem.treatment.forEach((treatment) {
+          result &= treatment.checked;
+        });
+      });
+    });
+    return result;
+  }
+
   Widget _buildTreatmentPlans(List<TreatmentPlan> treatmentPlans) {
     return Expanded(
-      child: ListView.builder
-        (
+      child: ListView.builder(
           shrinkWrap: true,
           itemCount: treatmentPlans.length,
           itemBuilder: (BuildContext context, int index) {
@@ -67,17 +92,21 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(Dimens.smallSpacing),
-                  child: new Text(treatmentPlans[index].type,  style: CustomStyles.treatmentTitleStyle,),
+                  child: new Text(
+                    treatmentPlans[index].type,
+                    style: CustomStyles.treatmentTitleStyle,
+                  ),
                 ),
                 _buildTreatmentItems(treatmentPlans[index].treatmentItems),
-                Divider(color: Colors.grey,)
+                Divider(
+                  color: Colors.grey,
+                )
               ],
             );
-          }
-      ),
+          }),
     );
   }
-  
+
   Widget _buildTreatmentItems(List<TreatmentItem> treatmentItems) {
     return ListView.builder(
         shrinkWrap: true,
@@ -89,13 +118,15 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(Dimens.smallSpacing),
-                child: Text(treatmentItems[index].treatmentDescription,style: CustomStyles.descriptionStyle,),
+                child: Text(
+                  treatmentItems[index].treatmentDescription,
+                  style: CustomStyles.descriptionStyle,
+                ),
               ),
               _buildTreatments(treatmentItems[index].treatment),
             ],
           );
-        }
-    );
+        });
   }
 
   Widget _buildTreatments(List<Treatment> treatments) {
@@ -104,24 +135,52 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
         physics: const NeverScrollableScrollPhysics(),
         itemCount: treatments.length,
         itemBuilder: (BuildContext context, int index) {
-          return Row(
-            children: <Widget>[
-              Checkbox(
-                  value: treatments[index].checked ?? false,
-                  onChanged: (bool newValue) {
-            setState(() {
-              treatments[index].checked = newValue;
-            });
-          },),
-              Text(treatments[index].description),
-            ],
-          );
-        }
+          return _buildTreatmentItem(treatments[index]);
+        });
+  }
+
+  Widget _buildTreatmentItem(Treatment treatment) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            CupertinoPageRoute(
+                builder: (context) => TreatmentDetailsPage(treatment)));
+      },
+      child: Row(
+        children: <Widget>[
+          Checkbox(
+            value: treatment.checked ?? false,
+            onChanged: (bool newValue) {
+              setState(() {
+                treatment.checked = newValue;
+              });
+            },
+          ),
+          Text(treatment.description),
+        ],
+      ),
     );
   }
 
   String getDate() {
     DateTime now = DateTime.now();
     return DateFormat('EEEE dd.MM.yyyy').format(now);
+  }
+
+  //todo for demo purpose only, delete me after the hackathon
+  List<TreatmentPlan> _preCheckAllDataExceptFurosemide(List<TreatmentPlan> treatmentPlans) {
+    List<TreatmentPlan> treatmentPlansPreChecked = List();
+    treatmentPlans.forEach((treatmentPlan) {
+      treatmentPlan.treatmentItems.forEach((treatmentItem) {
+        treatmentItem.treatment.forEach((treatment) {
+          if (treatment.description != 'Furosemide') {
+            treatment.checked = true;
+          }
+        });
+      });
+      treatmentPlansPreChecked.add(treatmentPlan);
+    });
+    return treatmentPlansPreChecked;
   }
 }
