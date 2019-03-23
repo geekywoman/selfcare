@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   http: ^0.12.0+1
   flutter_svg: ^0.12.0
+  fimber: ^0.1.11
 
 dev_dependencies:
   flutter_test:
@@ -44,6 +45,12 @@ flutter:
 
   assets:
   - assets/logo.svg
+  - assets/settings.svg
+  - assets/menu/menu_appointment.svg
+  - assets/menu/menu_chat.svg
+  - assets/menu/menu_clinical_result.svg
+  - assets/menu/menu_medical_history.svg
+  - assets/menu/menu_my_treatment.svg
 
   fonts:
   - family: Archivo
