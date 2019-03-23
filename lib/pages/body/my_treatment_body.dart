@@ -142,26 +142,30 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
   }
 
   Widget _buildTreatmentItem(Treatment treatment, String treatmentType) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context,
-            CupertinoPageRoute(
-                builder: (context) =>
-                    TreatmentDetailsPage(treatment, treatmentType)));
-      },
-      child: Row(
-        children: <Widget>[
-          Checkbox(
-            value: treatment.checked ?? false,
-            onChanged: (bool newValue) {
-              setState(() {
-                treatment.checked = newValue;
-              });
-            },
+    return Container(
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+              context,
+              CupertinoPageRoute(
+                  builder: (context) =>
+                      TreatmentDetailsPage(treatment, treatmentType)));
+        },
+        child: Container(
+          child: Row(
+            children: <Widget>[
+              Checkbox(
+                value: treatment.checked ?? false,
+                onChanged: (bool newValue) {
+                  setState(() {
+                    treatment.checked = newValue;
+                  });
+                },
+              ),
+              Text(treatment.description),
+            ],
           ),
-          Text(treatment.description),
-        ],
+        ),
       ),
     );
   }

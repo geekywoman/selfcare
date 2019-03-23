@@ -111,18 +111,18 @@ class TreatmentDetailsPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: Dimens.tinySpacing),
-            child: Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
                   '- Instructions: ',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                Column(
-                  children: <Widget>[
-                    Text(
-                      treatment.instructions,
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.only(top: Dimens.tinySpacing),
+                  child: Text(
+                    treatment.instructions,
+                  ),
                 )
               ],
             ),
