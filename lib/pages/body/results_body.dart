@@ -5,6 +5,7 @@ import 'package:selfcare/resources/colors.dart';
 import 'package:selfcare/resources/dimens.dart';
 import 'package:selfcare/resources/images.dart';
 import 'package:selfcare/resources/styles.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ResultsBody extends StatelessWidget {
   @override
@@ -12,51 +13,66 @@ class ResultsBody extends StatelessWidget {
     ReturnData returnData = NetworkUtils.instance.returnData;
     return Column(
       children: <Widget>[
-        _buildResultItem(bloodDropSvg, "Blood tests", true),
-        _buildResultItem(radioGraphicSvg, "Radiographics", false),
-        _buildResultItem(measurementSvg, "Measurements", false),
-        _buildResultItem(avatarSvg, "Self assessment", false),
+        _buildResultItem(bloodDropSvg, "Blood tests", true, false),
+        _buildResultItem(radioGraphicSvg, "Radiographics", false, false),
+        _buildResultItem(measurementSvg, "Measurements", false, false),
+        _buildResultItem(avatarSvg, "Self assessment", false, true),
       ],
     );
   }
 
-  Widget _buildResultItem(Widget icon, String title, bool newTest) {
+  Widget _buildResultItem(Widget icon, String title, bool newTest, bool selfAssessment) {
     return Padding(
       padding: const EdgeInsets.only(
           left: Dimens.mediumSpacing,
           right: Dimens.mediumSpacing,
           top: Dimens.mediumSpacing),
-      child: Card(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(Dimens.largeSpacing),
-                  child: icon,
-                ),
-                Text(
-                  title,
-                  style: CustomStyles.treatmentTitleStyle,
-                ),
-              ],
-            ),
-            Visibility(
-              visible: newTest,
-              child: Container(
-                margin: const EdgeInsets.only(right: Dimens.mediumSpacing),
-                width: Dimens.tinyIconSize,
-                height: Dimens.tinyIconSize,
-                decoration: BoxDecoration(
-                  color: CustomColors.accentColor,
-                  shape: BoxShape.circle,
+      child: GestureDetector(
+        onTap: () {
+          if (!selfAssessment) return;
+          _launchURL();
+        },
+        child: Card(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(Dimens.largeSpacing),
+                    child: icon,
+                  ),
+                  Text(
+                    title,
+                    style: CustomStyles.treatmentTitleStyle,
+                  ),
+                ],
+              ),
+              Visibility(
+                visible: newTest,
+                child: Container(
+                  margin: const EdgeInsets.only(right: Dimens.mediumSpacing),
+                  width: Dimens.tinyIconSize,
+                  height: Dimens.tinyIconSize,
+                  decoration: BoxDecoration(
+                    color: CustomColors.accentColor,
+                    shape: BoxShape.circle,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  _launchURL() async {
+    const url = 'https://docs.google.com/forms/d/e/1FAIpQLSfYgxYhBlycVzy2r0j0Pvg2dGQZzfhZOn61n1HhoiRo9eUzUw/viewform';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
