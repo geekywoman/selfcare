@@ -15,12 +15,22 @@ class MedicationData {
   String strengthUnit;
   int totalQuantity;
 
-  MedicationData({this.atcCode, this.confirmDate, this.daysLeft,
-      this.instructions, this.form, this.lastPrescribed, this.name,
-      this.numberOfPackings, this.numberOfTimes, this.oneTimeOnly,
-      this.prescriptionEnds, this.quantity, this.strength, this.strengthUnit,
+  MedicationData(
+      {this.atcCode,
+      this.confirmDate,
+      this.daysLeft,
+      this.instructions,
+      this.form,
+      this.lastPrescribed,
+      this.name,
+      this.numberOfPackings,
+      this.numberOfTimes,
+      this.oneTimeOnly,
+      this.prescriptionEnds,
+      this.quantity,
+      this.strength,
+      this.strengthUnit,
       this.totalQuantity});
-
 
   factory MedicationData.fromJson(Map<String, dynamic> json) {
     return MedicationData(
@@ -41,7 +51,4 @@ class MedicationData {
       totalQuantity: json['totalQuantity'],
     );
   }
-
-
-
 }

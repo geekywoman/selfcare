@@ -6,7 +6,6 @@ class EncounterData {
 
   EncounterData({this.id, this.arrivalId, this.description, this.referralId});
 
-
   factory EncounterData.fromJson(Map<String, dynamic> json) {
     return EncounterData(
       id: json['id'],
@@ -15,5 +14,4 @@ class EncounterData {
       referralId: json['referralId'],
     );
   }
-
 }

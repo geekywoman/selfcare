@@ -6,9 +6,13 @@ class AllergyData {
   String createDate;
   String type;
 
-  AllergyData({this.atc, this.classification, this.comment, this.component,
-      this.createDate, this.type});
-
+  AllergyData(
+      {this.atc,
+      this.classification,
+      this.comment,
+      this.component,
+      this.createDate,
+      this.type});
 
   factory AllergyData.fromJson(Map<String, dynamic> json) {
     return AllergyData(
@@ -20,5 +24,4 @@ class AllergyData {
       type: json['type'],
     );
   }
-
 }

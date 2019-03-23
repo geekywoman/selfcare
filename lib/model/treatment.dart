@@ -9,10 +9,16 @@ class Treatment {
   String instructions;
   bool checked;
 
-  Treatment({this.description, this.form, this.strength, this.strengthUnit,
-      this.morningDose, this.afternoonDose, this.eveningDose,
-      this.instructions, this.checked = false});
-
+  Treatment(
+      {this.description,
+      this.form,
+      this.strength,
+      this.strengthUnit,
+      this.morningDose,
+      this.afternoonDose,
+      this.eveningDose,
+      this.instructions,
+      this.checked = false});
 
   factory Treatment.fromJson(Map<String, dynamic> json) {
     return Treatment(
@@ -26,5 +32,4 @@ class Treatment {
       instructions: json['instructions'],
     );
   }
-
 }

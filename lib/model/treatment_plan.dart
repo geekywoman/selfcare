@@ -10,26 +10,29 @@ class TreatmentPlan {
   String planDescription;
   List<TreatmentItem> treatmentItems;
 
-  TreatmentPlan({this.id, this.diagnosisIds, this.type, this.startDate,
-      this.endDate, this.responsibleHCProvider, this.planDescription,
+  TreatmentPlan(
+      {this.id,
+      this.diagnosisIds,
+      this.type,
+      this.startDate,
+      this.endDate,
+      this.responsibleHCProvider,
+      this.planDescription,
       this.treatmentItems});
-
-
 
   factory TreatmentPlan.fromJson(Map<String, dynamic> json) {
     return TreatmentPlan(
         id: json['id'],
-        diagnosisIds:  json['diagnosisIds'] != null ? json['diagnosisIds'].cast<int>() as List : null,
+        diagnosisIds: json['diagnosisIds'] != null
+            ? json['diagnosisIds'].cast<int>() as List
+            : null,
         type: json['type'],
         startDate: json['startDate'],
         endDate: json['endDate'],
         responsibleHCProvider: json['responsibleHCProvider'],
         planDescription: json['planDescription'],
-        treatmentItems : (json['treatmentItems'] as List).map((i) {
+        treatmentItems: (json['treatmentItems'] as List).map((i) {
           return TreatmentItem.fromJson(i);
-        }).toList()
-    );
+        }).toList());
   }
-
-
 }

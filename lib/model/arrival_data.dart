@@ -6,9 +6,13 @@ class ArrivalData {
   String typeOfHealthcare;
   String location;
 
-  ArrivalData({this.id, this.appointmentId, this.arrivalData,
-      this.healthcareProvider, this.typeOfHealthcare, this.location});
-
+  ArrivalData(
+      {this.id,
+      this.appointmentId,
+      this.arrivalData,
+      this.healthcareProvider,
+      this.typeOfHealthcare,
+      this.location});
 
   factory ArrivalData.fromJson(Map<String, dynamic> json) {
     return ArrivalData(
@@ -20,5 +24,4 @@ class ArrivalData {
       location: json['location'],
     );
   }
-
 }

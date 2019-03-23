@@ -8,17 +8,13 @@ class BloodWorkData {
 
   BloodWorkData({this.testDate, this.resultDate, this.labName, this.results});
 
-
-
   factory BloodWorkData.fromJson(Map<String, dynamic> json) {
     return BloodWorkData(
-      testDate: json['testDate'],
-      resultDate: json['resultDate'],
-      labName: json['labName'],
-        results : (json['results'] as List).map((i) {
+        testDate: json['testDate'],
+        resultDate: json['resultDate'],
+        labName: json['labName'],
+        results: (json['results'] as List).map((i) {
           return BloodworkResult.fromJson(i);
-        }).toList()
-    );
+        }).toList());
   }
-
 }

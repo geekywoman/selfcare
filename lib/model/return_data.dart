@@ -25,52 +25,58 @@ class ReturnData {
   List<VaccinationData> vaccinationData;
   List<MedicationData> medicationData;
 
-  ReturnData({this.appointmentData, this.arrivalData, this.encounterData,
-      this.allergyData, this.measurementsData, this.bloodworksData,
-      this.diagnosticImagingData, this.diagnosisData, this.treatmentPlans,
-      this.referralData, this.vaccinationData, this.medicationData});
+  ReturnData(
+      {this.appointmentData,
+      this.arrivalData,
+      this.encounterData,
+      this.allergyData,
+      this.measurementsData,
+      this.bloodworksData,
+      this.diagnosticImagingData,
+      this.diagnosisData,
+      this.treatmentPlans,
+      this.referralData,
+      this.vaccinationData,
+      this.medicationData});
 
   factory ReturnData.fromJson(Map<String, dynamic> json) {
     return ReturnData(
-      appointmentData : (json['appointmentData'] as List).map((i) {
+      appointmentData: (json['appointmentData'] as List).map((i) {
         return AppointmentData.fromJson(i);
       }).toList(),
-      arrivalData : (json['arrivalData'] as List).map((i) {
+      arrivalData: (json['arrivalData'] as List).map((i) {
         return ArrivalData.fromJson(i);
       }).toList(),
-      encounterData : (json['encounterData'] as List).map((i) {
-      return EncounterData.fromJson(i);
-    }).toList(),
-      allergyData : (json['allergyData'] as List).map((i) {
-      return AllergyData.fromJson(i);
-    }).toList(),
-      measurementsData : (json['measurementsData'] as List).map((i) {
-      return MeasurementData.fromJson(i);
-    }).toList(),
-      bloodworksData : (json['bloodworksData'] as List).map((i) {
-      return BloodWorkData.fromJson(i);
-    }).toList(),
-      diagnosticImagingData : (json['diagnosticImagingData'] as List).map((i) {
-      return DiagnosticImagingData.fromJson(i);
-    }).toList(),
-
-      diagnosisData : (json['diagnosisData'] as List).map((i) {
+      encounterData: (json['encounterData'] as List).map((i) {
+        return EncounterData.fromJson(i);
+      }).toList(),
+      allergyData: (json['allergyData'] as List).map((i) {
+        return AllergyData.fromJson(i);
+      }).toList(),
+      measurementsData: (json['measurementsData'] as List).map((i) {
+        return MeasurementData.fromJson(i);
+      }).toList(),
+      bloodworksData: (json['bloodworksData'] as List).map((i) {
+        return BloodWorkData.fromJson(i);
+      }).toList(),
+      diagnosticImagingData: (json['diagnosticImagingData'] as List).map((i) {
+        return DiagnosticImagingData.fromJson(i);
+      }).toList(),
+      diagnosisData: (json['diagnosisData'] as List).map((i) {
         return DiagnosisData.fromJson(i);
       }).toList(),
-
-      treatmentPlans : (json['treatmentPlans'] as List).map((i) {
-      return TreatmentPlan.fromJson(i);
-    }).toList(),
-      referralData : (json['referralData'] as List).map((i) {
+      treatmentPlans: (json['treatmentPlans'] as List).map((i) {
+        return TreatmentPlan.fromJson(i);
+      }).toList(),
+      referralData: (json['referralData'] as List).map((i) {
         return ReferralData.fromJson(i);
       }).toList(),
-      vaccinationData : (json['vaccinationData'] as List).map((i) {
+      vaccinationData: (json['vaccinationData'] as List).map((i) {
         return VaccinationData.fromJson(i);
       }).toList(),
-      medicationData : (json['medicationData'] as List).map((i) {
+      medicationData: (json['medicationData'] as List).map((i) {
         return MedicationData.fromJson(i);
       }).toList(),
-
     );
   }
 }

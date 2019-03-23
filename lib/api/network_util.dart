@@ -6,8 +6,7 @@ import 'package:selfcare/model/patient_response.dart';
 import 'package:selfcare/model/return_data.dart';
 
 class NetworkUtils {
-
-  static NetworkUtils  _instance = new NetworkUtils.internal();
+  static NetworkUtils _instance = new NetworkUtils.internal();
   NetworkUtils.internal();
 
   factory NetworkUtils() => _instance;
@@ -17,8 +16,8 @@ class NetworkUtils {
   ReturnData returnData;
 
   Future<PatientResponse> getPatient(String socialSecurityNumber) async {
-    final response =
-    await http.get('http://healthapi.hc.t.is/api/PatientData/GetPatient/$socialSecurityNumber');
+    final response = await http.get(
+        'http://healthapi.hc.t.is/api/PatientData/GetPatient/$socialSecurityNumber');
 
     if (response.statusCode == 200) {
       // If server returns an OK response, parse the JSON
@@ -28,6 +27,4 @@ class NetworkUtils {
       throw Exception('Failed to load post');
     }
   }
-
-
 }

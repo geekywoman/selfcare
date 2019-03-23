@@ -6,7 +6,6 @@ class MeasurementItem {
 
   MeasurementItem({this.description, this.type, this.value, this.unit});
 
-
   factory MeasurementItem.fromJson(Map<String, dynamic> json) {
     return MeasurementItem(
       description: json['description'],
@@ -15,5 +14,4 @@ class MeasurementItem {
       unit: json['unit'],
     );
   }
-
 }

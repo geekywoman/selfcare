@@ -57,7 +57,6 @@ Widget vaccineSvg = SvgPicture.asset(
   height: 30,
 );
 
-
 String menuMyTreatmentSvgPath = 'assets/menu/menu_my_treatment.svg';
 String menuAppointmentsSvgPath = 'assets/menu/menu_appointment.svg';
 String menuClinicalResultsSvgPath = 'assets/menu/menu_clinical_result.svg';
