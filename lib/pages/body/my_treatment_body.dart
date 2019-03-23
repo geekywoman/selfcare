@@ -100,9 +100,6 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
                   ),
                 ),
                 _buildTreatmentItems(treatmentPlans[index].treatmentItems),
-                Divider(
-                  color: Colors.grey,
-                )
               ],
             );
           }),
@@ -119,13 +116,6 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(Dimens.smallSpacing),
-                child: Text(
-                  treatmentItem.treatmentDescription,
-                  style: CustomStyles.descriptionStyle,
-                ),
-              ),
               _buildTreatments(
                   treatmentItem.treatment, treatmentItem.treatmentType),
             ],
