@@ -19,7 +19,7 @@ class TreatmentPlan {
   factory TreatmentPlan.fromJson(Map<String, dynamic> json) {
     return TreatmentPlan(
         id: json['id'],
-        diagnosisIds: json['diagnosisIds'] as List,
+        diagnosisIds:  json['diagnosisIds'] != null ? json['diagnosisIds'].cast<int>() as List : null,
         type: json['type'],
         startDate: json['startDate'],
         endDate: json['endDate'],

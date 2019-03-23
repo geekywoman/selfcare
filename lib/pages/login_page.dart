@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:selfcare/api/network_util.dart';
+import 'package:selfcare/model/patient_response.dart';
+import 'package:selfcare/model/return_data.dart';
 import 'package:selfcare/pages/my_treatment_page.dart';
 import 'package:selfcare/resources/colors.dart';
 import 'package:selfcare/resources/dimens.dart';
@@ -86,9 +89,14 @@ class _LoginState extends State<LoginPage> {
     });
 
     //todo network call
-    Timer(new Duration(milliseconds: 500), () {
+
+    NetworkUtils.instance.getPatient().then((value) {
+      print("success");
+      NetworkUtils.instance.returnData = value.returnData;
       _navigateToMyTreatment();
+
     });
+
   }
 
   void _navigateToMyTreatment() {

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:selfcare/api/network_util.dart';
+import 'package:selfcare/model/return_data.dart';
 
 class MyTreatmentPage extends StatefulWidget {
   @override
@@ -17,6 +19,7 @@ class _MyTreatmentPageStage extends State<MyTreatmentPage> {
   }
 
   Widget _buildBody() {
-    return Text('body');
+    ReturnData returnData = NetworkUtils.instance.returnData;
+    return Text(returnData.allergyData[0].type);
   }
 }

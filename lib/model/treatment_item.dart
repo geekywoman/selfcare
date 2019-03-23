@@ -15,9 +15,9 @@ class TreatmentItem {
   factory TreatmentItem.fromJson(Map<String, dynamic> json) {
     return TreatmentItem(
       treatmentType: json['treatmentType'],
-      appointmentIds: json['appointmentIds'] as List,
+      appointmentIds: json['appointmentIds'] != null ? json['appointmentIds'].cast<int>() as List : null,
       treatmentDescription: json['treatmentDescription'],
-      referralIds: json['referralIds'] as List,
+      referralIds: json['referralIds'] != null ? json['referralIds'].cast<int>() as List : null,
         treatment : (json['treatment'] as List).map((i) {
           return Treatment.fromJson(i);
         }).toList()

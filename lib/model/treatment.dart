@@ -1,11 +1,11 @@
 class Treatment {
   String description;
   String form;
-  int strength;
+  double strength;
   String strengthUnit;
-  int morningDose;
-  int afternoonDose;
-  int eveningDose;
+  double morningDose;
+  double afternoonDose;
+  double eveningDose;
   String instructions;
 
   Treatment({this.description, this.form, this.strength, this.strengthUnit,
