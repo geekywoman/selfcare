@@ -17,8 +17,6 @@ class TreatmentBody extends StatefulWidget {
 }
 
 class _MyTreatmentPageStage extends State<TreatmentBody> {
-  bool allChecked = true;
-
   @override
   Widget build(BuildContext context) {
     return _buildBody();
@@ -27,6 +25,7 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
   Widget _buildBody() {
     ReturnData returnData = NetworkUtils.instance.returnData;
     List<TreatmentPlan> treatmentPlans = returnData.treatmentPlans;
+    treatmentPlans = _preCheckAllDataExceptFurosemide(treatmentPlans);
     return Column(
       children: <Widget>[
         Row(
@@ -53,17 +52,33 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
           ],
         ),
         Container(
-            height: 50.0,
-            width: 50.0,
+          width: Dimens.logoIconSize,
+          height: 100.0,
+          child: Visibility(
             child: FlareActor(
-              "assets/Trofeo.flr2d",
-              animation: "trophy_animation",
+              "assets/trophee.flr",
               alignment: Alignment.center,
-              fit: BoxFit.contain,
-            )),
+              fit: BoxFit.fitWidth,
+              animation: "animation",
+            ),
+            visible: _areAllTreatmentChecked(treatmentPlans),
+          ),
+        ),
         _buildTreatmentPlans(treatmentPlans),
       ],
     );
+  }
+
+  bool _areAllTreatmentChecked(List<TreatmentPlan> treatmentPlans) {
+    bool result = true;
+    treatmentPlans.forEach((treatmentPlan) {
+      treatmentPlan.treatmentItems.forEach((treatmentItem) {
+        treatmentItem.treatment.forEach((treatment) {
+          result &= treatment.checked;
+        });
+      });
+    });
+    return result;
   }
 
   Widget _buildTreatmentPlans(List<TreatmentPlan> treatmentPlans) {
@@ -151,5 +166,21 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
   String getDate() {
     DateTime now = DateTime.now();
     return DateFormat('EEEE dd.MM.yyyy').format(now);
+  }
+
+  //todo for demo purpose only, delete me after the hackathon
+  List<TreatmentPlan> _preCheckAllDataExceptFurosemide(List<TreatmentPlan> treatmentPlans) {
+    List<TreatmentPlan> treatmentPlansPreChecked = List();
+    treatmentPlans.forEach((treatmentPlan) {
+      treatmentPlan.treatmentItems.forEach((treatmentItem) {
+        treatmentItem.treatment.forEach((treatment) {
+          if (treatment.description != 'Furosemide') {
+            treatment.checked = true;
+          }
+        });
+      });
+      treatmentPlansPreChecked.add(treatmentPlan);
+    });
+    return treatmentPlansPreChecked;
   }
 }
