@@ -6,7 +6,6 @@ import 'package:selfcare/model/appointment_data.dart';
 import 'package:selfcare/resources/dimens.dart';
 import 'package:selfcare/resources/styles.dart';
 
-
 class AppointmentBody extends StatefulWidget {
   @override
   _AppointmentBodyState createState() => _AppointmentBodyState();
@@ -15,10 +14,13 @@ class AppointmentBody extends StatefulWidget {
 class _AppointmentBodyState extends State<AppointmentBody> {
   @override
   Widget build(BuildContext context) {
-    List<AppointmentData> appointments = NetworkUtils.instance.returnData.appointmentData;
+    List<AppointmentData> appointments =
+        NetworkUtils.instance.returnData.appointmentData;
     return Column(
       children: <Widget>[
-        Calendar(isExpandable: true,),
+        Calendar(
+          isExpandable: true,
+        ),
         _buildAppointmentList(appointments),
       ],
     );
@@ -27,7 +29,7 @@ class _AppointmentBodyState extends State<AppointmentBody> {
   Widget _buildAppointmentList(List<AppointmentData> appointments) {
     return Expanded(
       child: ListView.builder(
-        shrinkWrap: true,
+          shrinkWrap: true,
           itemCount: appointments.length,
           itemBuilder: (BuildContext context, int index) {
             return Column(
@@ -39,22 +41,37 @@ class _AppointmentBodyState extends State<AppointmentBody> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(left: Dimens.smallSpacing, bottom: Dimens.tinySpacing, right: Dimens.smallSpacing),
-                          child: Text(DateFormat('dd.MM.yy').format(DateTime.parse(appointments[index].appointmentTime)), ),
+                          padding: const EdgeInsets.only(
+                              left: Dimens.smallSpacing,
+                              bottom: Dimens.tinySpacing,
+                              right: Dimens.smallSpacing),
+                          child: Text(
+                            DateFormat('dd.MM.yy').format(DateTime.parse(
+                                appointments[index].appointmentTime)),
+                          ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: Dimens.smallSpacing),
-                          child: Text(DateFormat('Hm').format(DateTime.parse(appointments[index].appointmentTime)),),
+                          padding:
+                              const EdgeInsets.only(left: Dimens.smallSpacing),
+                          child: Text(
+                            DateFormat('Hm').format(DateTime.parse(
+                                appointments[index].appointmentTime)),
+                          ),
                         ),
                       ],
                     ),
                     Padding(
                       padding: const EdgeInsets.all(Dimens.smallSpacing),
-                      child: Text(appointments[index].location, style: CustomStyles.appointmentStyle,),
+                      child: Text(
+                        appointments[index].location,
+                        style: CustomStyles.appointmentStyle,
+                      ),
                     ),
                   ],
                 ),
-                Divider(color: Colors.grey,)
+                Divider(
+                  color: Colors.grey,
+                )
               ],
             );
           }),

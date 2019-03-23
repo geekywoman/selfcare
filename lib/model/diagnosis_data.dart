@@ -5,18 +5,18 @@ class DiagnosisData {
   String icD10Code;
   String term;
 
-  DiagnosisData({this.id, this.treatmentPlanIds, this.date, this.icD10Code,
-      this.term});
-
+  DiagnosisData(
+      {this.id, this.treatmentPlanIds, this.date, this.icD10Code, this.term});
 
   factory DiagnosisData.fromJson(Map<String, dynamic> json) {
     return DiagnosisData(
-        id: json['id'],
-        treatmentPlanIds: json['treatmentPlanIds'] != null ? json['treatmentPlanIds'].cast<int>() as List : null,
-        date: json['date'],
+      id: json['id'],
+      treatmentPlanIds: json['treatmentPlanIds'] != null
+          ? json['treatmentPlanIds'].cast<int>() as List
+          : null,
+      date: json['date'],
       icD10Code: json['icD10Code'],
       term: json['term'],
     );
   }
-
 }

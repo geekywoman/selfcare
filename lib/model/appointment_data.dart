@@ -5,8 +5,11 @@ class AppointmentData {
   String location;
   String resource;
 
-
-  AppointmentData({this.id, this.arrivalId, this.appointmentTime, this.location,
+  AppointmentData(
+      {this.id,
+      this.arrivalId,
+      this.appointmentTime,
+      this.location,
       this.resource});
 
   factory AppointmentData.fromJson(Map<String, dynamic> json) {
@@ -18,6 +21,4 @@ class AppointmentData {
       resource: json['resource'],
     );
   }
-
-
 }

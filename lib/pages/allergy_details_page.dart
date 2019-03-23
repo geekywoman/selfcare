@@ -36,22 +36,32 @@ class _AllergyDetailPageState extends State<AllergyDetailPage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Text("Name", style: CustomStyles.allergyTitleStyle,),
-        Text("Type",  style: CustomStyles.allergyTitleStyle,),
-        Text("Severity",  style: CustomStyles.allergyTitleStyle,),
-
+        Text(
+          "Name",
+          style: CustomStyles.allergyTitleStyle,
+        ),
+        Text(
+          "Type",
+          style: CustomStyles.allergyTitleStyle,
+        ),
+        Text(
+          "Severity",
+          style: CustomStyles.allergyTitleStyle,
+        ),
       ],
     );
   }
 
   Widget _buildListView(List<AllergyData> allergyData) {
     return ListView.builder(
-      shrinkWrap: true,
+        shrinkWrap: true,
         itemCount: allergyData.length,
         itemBuilder: (BuildContext context, int index) {
           return Column(
             children: <Widget>[
-              Divider(color: Colors.grey,),
+              Divider(
+                color: Colors.grey,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[

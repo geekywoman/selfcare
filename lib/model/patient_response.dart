@@ -1,6 +1,6 @@
 import 'package:selfcare/model/return_data.dart';
 
-class PatientResponse{
+class PatientResponse {
   ReturnData returnData;
 
   PatientResponse({this.returnData});
@@ -10,5 +10,4 @@ class PatientResponse{
       returnData: ReturnData.fromJson(json['returnData']),
     );
   }
-
 }

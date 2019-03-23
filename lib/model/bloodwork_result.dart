@@ -7,9 +7,14 @@ class BloodworkResult {
   double lowerLimitNumber;
   double upperLimitNumber;
 
-  BloodworkResult({this.type, this.category, this.value, this.description,
-      this.unit, this.lowerLimitNumber, this.upperLimitNumber});
-
+  BloodworkResult(
+      {this.type,
+      this.category,
+      this.value,
+      this.description,
+      this.unit,
+      this.lowerLimitNumber,
+      this.upperLimitNumber});
 
   factory BloodworkResult.fromJson(Map<String, dynamic> json) {
     return BloodworkResult(

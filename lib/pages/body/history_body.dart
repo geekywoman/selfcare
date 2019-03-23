@@ -1,12 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:selfcare/api/network_util.dart';
-import 'package:selfcare/model/return_data.dart';
 import 'package:selfcare/pages/allergy_details_page.dart';
 import 'package:selfcare/resources/dimens.dart';
 import 'package:selfcare/resources/images.dart';
 import 'package:selfcare/resources/styles.dart';
-
 
 class HistoryBody extends StatefulWidget {
   @override
@@ -16,7 +13,6 @@ class HistoryBody extends StatefulWidget {
 class _HistoryBodyState extends State<HistoryBody> {
   @override
   Widget build(BuildContext context) {
-
     return Column(
       children: <Widget>[
         _buildHistoryItem(vaccineSvg, "Vaccinations"),
@@ -29,14 +25,14 @@ class _HistoryBodyState extends State<HistoryBody> {
 
   Widget _buildHistoryItem(Widget icon, String title) {
     return Padding(
-      padding: const EdgeInsets.only(left: Dimens.mediumSpacing, right: Dimens.mediumSpacing, top: Dimens.mediumSpacing),
+      padding: const EdgeInsets.only(
+          left: Dimens.mediumSpacing,
+          right: Dimens.mediumSpacing,
+          top: Dimens.mediumSpacing),
       child: GestureDetector(
         onTap: () {
-          Navigator.push(
-              context,
-              CupertinoPageRoute(
-                  builder: (context) =>
-                      AllergyDetailPage()));
+          Navigator.push(context,
+              CupertinoPageRoute(builder: (context) => AllergyDetailPage()));
         },
         child: Card(
           child: Row(
@@ -45,7 +41,10 @@ class _HistoryBodyState extends State<HistoryBody> {
                 padding: const EdgeInsets.all(Dimens.largeSpacing),
                 child: icon,
               ),
-              Text(title, style: CustomStyles.treatmentTitleStyle,)
+              Text(
+                title,
+                style: CustomStyles.treatmentTitleStyle,
+              )
             ],
           ),
         ),

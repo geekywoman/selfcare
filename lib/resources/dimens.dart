@@ -20,5 +20,4 @@ class Dimens {
   static const double allergyTitleSize = 18.0;
   static const double descriptionSize = 16.0;
   static const double treatmentSize = 14.0;
-
 }
