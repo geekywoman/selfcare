@@ -56,6 +56,10 @@ flutter:
   - assets/menu/menu_medical_history.svg
   - assets/menu/menu_my_treatment.svg
   - assets/trophee.flr
+  - assets/radiography.svg
+  - assets/ruler.svg
+  - assets/drop.svg
+  - assets/avatar.svg
 
   fonts:
   - family: Archivo

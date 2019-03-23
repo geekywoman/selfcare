@@ -17,6 +17,28 @@ Widget medicineSvg = SvgPicture.asset(
   height: Dimens.logoIconSize,
 );
 
+Widget bloodDropSvg = SvgPicture.asset(
+  'assets/drop.svg',
+  height: 30,
+);
+
+Widget radioGraphicSvg = SvgPicture.asset(
+  'assets/radiography.svg',
+  height: 30,
+);
+
+Widget measurementSvg = SvgPicture.asset(
+  'assets/ruler.svg',
+  height: 30,
+);
+
+Widget avatarSvg = SvgPicture.asset(
+  'assets/avatar.svg',
+  height: 30,
+);
+
+
+
 String menuMyTreatmentSvgPath = 'assets/menu/menu_my_treatment.svg';
 String menuAppointmentsSvgPath = 'assets/menu/menu_appointment.svg';
 String menuClinicalResultsSvgPath = 'assets/menu/menu_clinical_result.svg';
