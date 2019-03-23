@@ -60,6 +60,10 @@ flutter:
   - assets/ruler.svg
   - assets/drop.svg
   - assets/avatar.svg
+  - assets/allergy.svg
+  - assets/doctor.svg
+  - assets/hospital.svg
+  - assets/vaccine.svg
 
   fonts:
   - family: Archivo

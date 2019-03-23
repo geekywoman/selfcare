@@ -37,6 +37,25 @@ Widget avatarSvg = SvgPicture.asset(
   height: 30,
 );
 
+Widget allergySvg = SvgPicture.asset(
+  'assets/allergy.svg',
+  height: 30,
+);
+
+Widget doctorSvg = SvgPicture.asset(
+  'assets/doctor.svg',
+  height: 30,
+);
+
+Widget hospitalSvg = SvgPicture.asset(
+  'assets/hospital.svg',
+  height: 30,
+);
+
+Widget vaccineSvg = SvgPicture.asset(
+  'assets/vaccine.svg',
+  height: 30,
+);
 
 
 String menuMyTreatmentSvgPath = 'assets/menu/menu_my_treatment.svg';
