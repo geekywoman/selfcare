@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:selfcare/pages/body/appointment_body.dart';
 import 'package:selfcare/pages/body/chat_body.dart';
 import 'package:selfcare/pages/body/history_body.dart';
+import 'package:selfcare/pages/body/my_treatment_body.dart';
 import 'package:selfcare/pages/body/results_body.dart';
 import 'package:selfcare/pages/settings_page.dart';
 import 'package:selfcare/resources/colors.dart';
@@ -75,7 +76,7 @@ class _ContainerPageState extends State<ContainerPage> {
   }
 
   Widget _buildTreatmentBody() {
-    return null;
+    return TreatmentBody();
   }
 
   Widget _buildAppointmentsBody() {

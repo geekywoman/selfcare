@@ -3,40 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:selfcare/model/treatment.dart';
 import 'package:selfcare/model/treatment_item.dart';
 import 'package:selfcare/model/treatment_plan.dart';
-import 'package:selfcare/pages/settings_page.dart';
 import 'package:selfcare/api/network_util.dart';
 import 'package:selfcare/model/return_data.dart';
 import 'package:selfcare/resources/dimens.dart';
 import 'package:selfcare/resources/styles.dart';
 
-class MyTreatmentPage extends StatefulWidget {
+class TreatmentBody extends StatefulWidget {
   @override
   _MyTreatmentPageStage createState() => _MyTreatmentPageStage();
 }
 
-class _MyTreatmentPageStage extends State<MyTreatmentPage> {
+class _MyTreatmentPageStage extends State<TreatmentBody> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('My treatment'),
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(
-                Icons.settings,
-              ),
-              onPressed: () {
-                Navigator.push(context,
-                    CupertinoPageRoute(builder: (context) => SettingsPage()));
-              })
-        ],
-      ),
-      body: _buildBody(),
-    );
+    return _buildBody();
   }
 
   Widget _buildBody() {
-
     ReturnData returnData = NetworkUtils.instance.returnData;
     List<TreatmentPlan> treatmentPlans = returnData.treatmentPlans;
     return ListView.builder
@@ -57,7 +40,7 @@ class _MyTreatmentPageStage extends State<MyTreatmentPage> {
         }
     );
   }
-  
+
   Widget _buildTreatmentPlan(List<TreatmentItem> treatmentItems) {
     return ListView.builder(
         shrinkWrap: true,
