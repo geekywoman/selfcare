@@ -4,5 +4,5 @@ import 'package:selfcare/resources/dimens.dart';
 
 Widget logoSvg = SvgPicture.asset(
   'assets/logo.svg',
-  height: Dimens.largeIconSize,
+  height: Dimens.logoIconSize,
 );

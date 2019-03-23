@@ -13,7 +13,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: CustomColors.primaryColor,
         accentColor: CustomColors.accentColor,
-        primaryTextTheme: TextTheme(title: TextStyle(color: Colors.white)),
         fontFamily: 'Archivo',
       ),
       home: LoginPage(),
