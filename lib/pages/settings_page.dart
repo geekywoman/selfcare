@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:selfcare/pages/login_page.dart';
 import 'package:selfcare/resources/colors.dart';
 import 'package:selfcare/resources/dimens.dart';
-import 'package:selfcare/resources/styles.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -37,9 +36,13 @@ class _SettingsPageState extends State<SettingsPage> {
           padding: const EdgeInsets.all(Dimens.smallSpacing),
           child: Column(
             children: <Widget>[
-              Text(
-                'Notifications',
-                style: CustomStyles.treatmentTitleStyle,
+              Row(
+                children: <Widget>[
+                  Text(
+                    'Notifications',
+                    style: TextStyle(fontSize: Dimens.titleSize),
+                  ),
+                ],
               ),
               Divider(
                 color: Colors.grey,
