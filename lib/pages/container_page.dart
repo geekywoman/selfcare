@@ -1,6 +1,9 @@
-import 'package:fimber/fimber.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:selfcare/pages/body/appointment_body.dart';
+import 'package:selfcare/pages/body/chat_body.dart';
+import 'package:selfcare/pages/body/history_body.dart';
+import 'package:selfcare/pages/body/results_body.dart';
 import 'package:selfcare/pages/settings_page.dart';
 import 'package:selfcare/resources/colors.dart';
 import 'package:selfcare/resources/images.dart';
@@ -20,24 +23,23 @@ class _ContainerPageState extends State<ContainerPage> {
     BottomAppBarItem(svgPath: menuChatSvgPath, title: 'Chat'),
   ];
 
-  BottomAppBarItem _selectedItem = _bottomBarItems[0];
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_selectedItem.title),
+        title: Text(_bottomBarItems[_selectedIndex].title),
         actions: <Widget>[
-          _selectedItem == _bottomBarItems[0]
-              ? IconButton(
-                  icon: settingsSvg,
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                            builder: (context) => SettingsPage()));
-                  })
-              : null
+          Visibility(
+            child: IconButton(
+                icon: settingsSvg,
+                onPressed: () {
+                  Navigator.push(context,
+                      CupertinoPageRoute(builder: (context) => SettingsPage()));
+                }),
+            visible: _selectedIndex == 0,
+          )
         ],
       ),
       body: _buildBody(),
@@ -52,14 +54,43 @@ class _ContainerPageState extends State<ContainerPage> {
 
   void _selectedTab(int index) {
     setState(() {
-      Fimber.d('tab selected: $index');
-      _selectedItem = _bottomBarItems[index];
-      _selectedItem.title = _bottomBarItems[index].title;
+      _selectedIndex = index;
     });
   }
 
   Widget _buildBody() {
-    Fimber.d('_buildBody');
-    return Text(_selectedItem.title);
+    switch (_selectedIndex) {
+      case 1:
+        return _buildAppointmentsBody();
+      case 2:
+        return _buildResultsBody();
+      case 3:
+        return _buildHistoryBody();
+      case 4:
+        return _buildChatBody();
+      case 0:
+      default:
+        return _buildTreatmentBody();
+    }
+  }
+
+  Widget _buildTreatmentBody() {
+    return null;
+  }
+
+  Widget _buildAppointmentsBody() {
+    return AppointmentBody();
+  }
+
+  Widget _buildResultsBody() {
+    return ResultsBody();
+  }
+
+  Widget _buildHistoryBody() {
+    return HistoryBody();
+  }
+
+  Widget _buildChatBody() {
+    return ChatBody();
   }
 }

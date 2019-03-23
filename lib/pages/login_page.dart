@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:selfcare/pages/container_page.dart';
 import 'package:selfcare/pages/my_treatment_page.dart';
 import 'package:selfcare/resources/colors.dart';
 import 'package:selfcare/resources/dimens.dart';
@@ -128,6 +129,6 @@ class _LoginState extends State<LoginPage> {
 
   void _navigateToMyTreatment() {
     Navigator.pushReplacement(
-        context, CupertinoPageRoute(builder: (context) => MyTreatmentPage()));
+        context, CupertinoPageRoute(builder: (context) => ContainerPage()));
   }
 }
