@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:selfcare/api/network_util.dart';
+import 'package:selfcare/model/return_data.dart';
 import 'package:selfcare/model/treatment.dart';
 import 'package:selfcare/model/treatment_item.dart';
 import 'package:selfcare/model/treatment_plan.dart';
-import 'package:selfcare/pages/settings_page.dart';
-import 'package:selfcare/api/network_util.dart';
-import 'package:selfcare/model/return_data.dart';
+import 'package:selfcare/pages/treatment_details_page.dart';
 import 'package:selfcare/resources/dimens.dart';
 import 'package:selfcare/resources/styles.dart';
-import 'package:intl/intl.dart';
 
 class TreatmentBody extends StatefulWidget {
   @override
@@ -22,7 +22,6 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
   }
 
   Widget _buildBody() {
-
     ReturnData returnData = NetworkUtils.instance.returnData;
     List<TreatmentPlan> treatmentPlans = returnData.treatmentPlans;
     return Column(
@@ -32,12 +31,21 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(Dimens.smallSpacing),
-              child: Icon(Icons.arrow_back_ios, size: Dimens.tinyIconSize,),
+              child: Icon(
+                Icons.arrow_back_ios,
+                size: Dimens.tinyIconSize,
+              ),
             ),
-            Text(getDate(), style: CustomStyles.dateTitle,),
+            Text(
+              getDate(),
+              style: CustomStyles.dateTitle,
+            ),
             Padding(
               padding: const EdgeInsets.all(Dimens.smallSpacing),
-              child: Icon(Icons.arrow_forward_ios, size: Dimens.tinyIconSize,),
+              child: Icon(
+                Icons.arrow_forward_ios,
+                size: Dimens.tinyIconSize,
+              ),
             ),
           ],
         ),
@@ -47,8 +55,7 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
   }
 
   Widget _buildTreatmentPlans(List<TreatmentPlan> treatmentPlans) {
-    return ListView.builder
-      (
+    return ListView.builder(
         shrinkWrap: true,
         itemCount: treatmentPlans.length,
         itemBuilder: (BuildContext context, int index) {
@@ -57,16 +64,20 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(Dimens.smallSpacing),
-                child: new Text(treatmentPlans[index].type,  style: CustomStyles.treatmentTitleStyle,),
+                child: new Text(
+                  treatmentPlans[index].type,
+                  style: CustomStyles.treatmentTitleStyle,
+                ),
               ),
               _buildTreatmentItems(treatmentPlans[index].treatmentItems),
-              Divider(color: Colors.grey,)
+              Divider(
+                color: Colors.grey,
+              )
             ],
           );
-        }
-    );
+        });
   }
-  
+
   Widget _buildTreatmentItems(List<TreatmentItem> treatmentItems) {
     return ListView.builder(
         shrinkWrap: true,
@@ -78,13 +89,15 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(Dimens.smallSpacing),
-                child: Text(treatmentItems[index].treatmentDescription,style: CustomStyles.descriptionStyle,),
+                child: Text(
+                  treatmentItems[index].treatmentDescription,
+                  style: CustomStyles.descriptionStyle,
+                ),
               ),
               _buildTreatments(treatmentItems[index].treatment),
             ],
           );
-        }
-    );
+        });
   }
 
   Widget _buildTreatments(List<Treatment> treatments) {
@@ -93,19 +106,31 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
         physics: const NeverScrollableScrollPhysics(),
         itemCount: treatments.length,
         itemBuilder: (BuildContext context, int index) {
-          return Row(
-            children: <Widget>[
-              Checkbox(
-                  value: treatments[index].checked ?? false,
-                  onChanged: (bool newValue) {
-            setState(() {
-              treatments[index].checked = newValue;
-            });
-          },),
-              Text(treatments[index].description),
-            ],
-          );
-        }
+          return _buildTreatmentItem(treatments[index]);
+        });
+  }
+
+  Widget _buildTreatmentItem(Treatment treatment) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            CupertinoPageRoute(
+                builder: (context) => TreatmentDetailsPage(treatment)));
+      },
+      child: Row(
+        children: <Widget>[
+          Checkbox(
+            value: treatment.checked ?? false,
+            onChanged: (bool newValue) {
+              setState(() {
+                treatment.checked = newValue;
+              });
+            },
+          ),
+          Text(treatment.description),
+        ],
+      ),
     );
   }
 

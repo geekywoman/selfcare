@@ -1,4 +1,4 @@
-import 'package:selfcare/model/allery_data.dart';
+import 'package:selfcare/model/allergy_data.dart';
 import 'package:selfcare/model/appointment_data.dart';
 import 'package:selfcare/model/arrival_data.dart';
 import 'package:selfcare/model/bloodwork_data.dart';

@@ -47,6 +47,7 @@ flutter:
   assets:
   - assets/logo.svg
   - assets/settings.svg
+  - assets/medicine.svg
   - assets/menu/menu_appointment.svg
   - assets/menu/menu_chat.svg
   - assets/menu/menu_clinical_result.svg

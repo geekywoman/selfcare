@@ -12,6 +12,11 @@ Widget settingsSvg = SvgPicture.asset(
   height: Dimens.smallIconSize,
 );
 
+Widget medicineSvg = SvgPicture.asset(
+  'assets/medicine.svg',
+  height: Dimens.logoIconSize,
+);
+
 String menuMyTreatmentSvgPath = 'assets/menu/menu_my_treatment.svg';
 String menuAppointmentsSvgPath = 'assets/menu/menu_appointment.svg';
 String menuClinicalResultsSvgPath = 'assets/menu/menu_clinical_result.svg';
