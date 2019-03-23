@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:selfcare/pages/settings_page.dart';
 import 'package:selfcare/api/network_util.dart';
 import 'package:selfcare/model/return_data.dart';
 
@@ -13,6 +15,16 @@ class _MyTreatmentPageStage extends State<MyTreatmentPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('My treatment'),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(
+                Icons.settings,
+              ),
+              onPressed: () {
+                Navigator.push(context,
+                    CupertinoPageRoute(builder: (context) => SettingsPage()));
+              })
+        ],
       ),
       body: _buildBody(),
     );

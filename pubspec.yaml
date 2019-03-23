@@ -26,7 +26,6 @@ dependencies:
   http: ^0.12.0+1
   flutter_svg: ^0.12.0
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -44,7 +43,14 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/logo.svg
+  - assets/logo.svg
+
+  fonts:
+  - family: Archivo
+    fonts:
+    - asset: fonts/Archivo-Bold.ttf
+    - asset: fonts/Archivo-Italic.ttf
+    - asset: fonts/Archivo-Regular.ttf
 
 
   # To add assets to your application, add an assets section, like this:
