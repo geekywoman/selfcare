@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:selfcare/api/network_util.dart';
 import 'package:selfcare/model/return_data.dart';
+import 'package:selfcare/pages/blood_test_list_page.dart';
 import 'package:selfcare/resources/colors.dart';
 import 'package:selfcare/resources/dimens.dart';
 import 'package:selfcare/resources/images.dart';
@@ -17,6 +19,18 @@ class ResultsBody extends StatelessWidget {
         _buildResultItem(radioGraphicSvg, "Radiographics", false, false),
         _buildResultItem(measurementSvg, "Measurements", false, false),
         _buildResultItem(avatarSvg, "Self assessment", false, true),
+        GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                      builder: (context) =>
+                          BloodTestListPage(returnData.bloodworksData)));
+            },
+            child: _buildResultItem(bloodDropSvg, "Blood tests", true)),
+        _buildResultItem(radioGraphicSvg, "Radiographics", false),
+        _buildResultItem(measurementSvg, "Measurements", false),
+        _buildResultItem(avatarSvg, "Self assessment", false),
       ],
     );
   }
