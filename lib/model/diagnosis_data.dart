@@ -12,7 +12,7 @@ class DiagnosisData {
   factory DiagnosisData.fromJson(Map<String, dynamic> json) {
     return DiagnosisData(
         id: json['id'],
-        treatmentPlanIds: json['treatmentPlanIds'] as List,
+        treatmentPlanIds: json['treatmentPlanIds'] != null ? json['treatmentPlanIds'].cast<int>() as List : null,
         date: json['date'],
       icD10Code: json['icD10Code'],
       term: json['term'],

@@ -1,16 +1,17 @@
 class Treatment {
   String description;
   String form;
-  int strength;
+  double strength;
   String strengthUnit;
-  int morningDose;
-  int afternoonDose;
-  int eveningDose;
+  double morningDose;
+  double afternoonDose;
+  double eveningDose;
   String instructions;
+  bool checked;
 
   Treatment({this.description, this.form, this.strength, this.strengthUnit,
       this.morningDose, this.afternoonDose, this.eveningDose,
-      this.instructions});
+      this.instructions, this.checked = false});
 
 
   factory Treatment.fromJson(Map<String, dynamic> json) {

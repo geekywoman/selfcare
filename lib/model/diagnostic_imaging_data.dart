@@ -11,7 +11,7 @@ class DiagnosticImagingData {
 
   factory DiagnosticImagingData.fromJson(Map<String, dynamic> json) {
     return DiagnosticImagingData(
-      referralIds: json['referralIds'] as List,
+      referralIds: json['referralIds'] != null ? json['referralIds'].cast<int>() as List : null,
       testDate: json['testDate'],
       resultDate: json['resultDate'],
       labName: json['labName'],

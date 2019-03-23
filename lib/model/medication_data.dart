@@ -11,7 +11,7 @@ class MedicationData {
   bool oneTimeOnly;
   String prescriptionEnds;
   int quantity;
-  int strength;
+  double strength;
   String strengthUnit;
   int totalQuantity;
 
