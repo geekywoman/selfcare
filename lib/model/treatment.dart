@@ -7,10 +7,11 @@ class Treatment {
   double afternoonDose;
   double eveningDose;
   String instructions;
+  bool checked;
 
   Treatment({this.description, this.form, this.strength, this.strengthUnit,
       this.morningDose, this.afternoonDose, this.eveningDose,
-      this.instructions});
+      this.instructions, this.checked = false});
 
 
   factory Treatment.fromJson(Map<String, dynamic> json) {
