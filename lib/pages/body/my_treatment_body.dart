@@ -26,6 +26,8 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
     ReturnData returnData = NetworkUtils.instance.returnData;
     List<TreatmentPlan> treatmentPlans = returnData.treatmentPlans;
     treatmentPlans = _preCheckAllDataExceptFurosemide(treatmentPlans);
+
+    bool showReward = _areAllTreatmentChecked(treatmentPlans);
     return Column(
       children: <Widget>[
         Row(
@@ -53,7 +55,7 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
         ),
         Container(
           width: Dimens.logoIconSize,
-          height: 100.0,
+          height: showReward ? 100.0 : 0,
           child: Visibility(
             child: FlareActor(
               "assets/trophee.flr",
@@ -61,7 +63,7 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
               fit: BoxFit.fitWidth,
               animation: "animation",
             ),
-            visible: _areAllTreatmentChecked(treatmentPlans),
+            visible: showReward,
           ),
         ),
         _buildTreatmentPlans(treatmentPlans),
