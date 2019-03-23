@@ -113,39 +113,42 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
         physics: const NeverScrollableScrollPhysics(),
         itemCount: treatmentItems.length,
         itemBuilder: (BuildContext context, int index) {
+          TreatmentItem treatmentItem = treatmentItems[index];
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(Dimens.smallSpacing),
                 child: Text(
-                  treatmentItems[index].treatmentDescription,
+                  treatmentItem.treatmentDescription,
                   style: CustomStyles.descriptionStyle,
                 ),
               ),
-              _buildTreatments(treatmentItems[index].treatment),
+              _buildTreatments(
+                  treatmentItem.treatment, treatmentItem.treatmentType),
             ],
           );
         });
   }
 
-  Widget _buildTreatments(List<Treatment> treatments) {
+  Widget _buildTreatments(List<Treatment> treatments, String treatmentType) {
     return ListView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: treatments.length,
         itemBuilder: (BuildContext context, int index) {
-          return _buildTreatmentItem(treatments[index]);
+          return _buildTreatmentItem(treatments[index], treatmentType);
         });
   }
 
-  Widget _buildTreatmentItem(Treatment treatment) {
+  Widget _buildTreatmentItem(Treatment treatment, String treatmentType) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
             context,
             CupertinoPageRoute(
-                builder: (context) => TreatmentDetailsPage(treatment)));
+                builder: (context) =>
+                    TreatmentDetailsPage(treatment, treatmentType)));
       },
       child: Row(
         children: <Widget>[
@@ -169,7 +172,8 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
   }
 
   //todo for demo purpose only, delete me after the hackathon
-  List<TreatmentPlan> _preCheckAllDataExceptFurosemide(List<TreatmentPlan> treatmentPlans) {
+  List<TreatmentPlan> _preCheckAllDataExceptFurosemide(
+      List<TreatmentPlan> treatmentPlans) {
     List<TreatmentPlan> treatmentPlansPreChecked = List();
     treatmentPlans.forEach((treatmentPlan) {
       treatmentPlan.treatmentItems.forEach((treatmentItem) {

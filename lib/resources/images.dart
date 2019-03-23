@@ -14,7 +14,7 @@ Widget settingsSvg = SvgPicture.asset(
 
 Widget medicineSvg = SvgPicture.asset(
   'assets/medicine.svg',
-  height: Dimens.logoIconSize,
+  height: 200.0,
 );
 
 Widget bloodDropSvg = SvgPicture.asset(
