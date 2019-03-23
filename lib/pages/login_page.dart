@@ -13,6 +13,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginState extends State<LoginPage> {
   bool _isLoading = false;
+  String socialSecurityNumber = '2207399999'; //todo remove dummy data
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,10 @@ class _LoginState extends State<LoginPage> {
     return Container(
       margin: EdgeInsets.only(top: Dimens.mediumSpacing),
       child: TextFormField(
-        initialValue: '2207399999',
+        onSaved: (String value) {
+          socialSecurityNumber = value;
+        },
+        initialValue: socialSecurityNumber,
         decoration: InputDecoration(
           prefixIcon: Icon(Icons.person, size: Dimens.smallIconSize),
           hintText: 'Social security number',
@@ -118,7 +122,7 @@ class _LoginState extends State<LoginPage> {
       _isLoading = true;
     });
 
-    NetworkUtils.instance.getPatient().then((value) {
+    NetworkUtils.instance.getPatient(socialSecurityNumber).then((value) {
       print("success");
       NetworkUtils.instance.returnData = value.returnData;
       _navigateToMyTreatment();

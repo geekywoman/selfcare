@@ -16,9 +16,9 @@ class NetworkUtils {
 
   ReturnData returnData;
 
-  Future<PatientResponse> getPatient() async {
+  Future<PatientResponse> getPatient(String socialSecurityNumber) async {
     final response =
-    await http.get('http://healthapi.hc.t.is/api/PatientData/GetPatient/2207399999');
+    await http.get('http://healthapi.hc.t.is/api/PatientData/GetPatient/$socialSecurityNumber');
 
     if (response.statusCode == 200) {
       // If server returns an OK response, parse the JSON
