@@ -42,7 +42,7 @@ class _LoginState extends State<LoginPage> {
 
   Widget _buildLoginField() {
     return Container(
-      margin: EdgeInsets.only(top: Dimens.mediumSpacing),
+      margin: EdgeInsets.only(top: Dimens.veryLargeSpacing),
       child: TextFormField(
         onSaved: (String value) {
           socialSecurityNumber = value;
@@ -69,7 +69,7 @@ class _LoginState extends State<LoginPage> {
 
   Widget _buildLoginButton() {
     return Container(
-      margin: EdgeInsets.only(top: Dimens.mediumSpacing),
+      margin: EdgeInsets.only(top: Dimens.veryLargeSpacing),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
@@ -78,31 +78,34 @@ class _LoginState extends State<LoginPage> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(Dimens.radius)),
             padding: const EdgeInsets.all(Dimens.smallSpacing),
-            child: Stack(
-              children: <Widget>[
-                Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Login',
-                      style: TextStyle(color: Colors.white),
-                    )),
-                Visibility(
-                  visible: _isLoading,
-                  child: Align(
-                    alignment: Alignment(0.25, 0.0),
-                    child: Container(
-                        margin:
-                            const EdgeInsets.only(left: Dimens.smallSpacing),
-                        width: 20.0,
-                        height: 20.0,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2.0,
-                          valueColor:
-                              new AlwaysStoppedAnimation<Color>(Colors.white),
-                        )),
+            child: Padding(
+              padding: const EdgeInsets.all(Dimens.tinySpacing),
+              child: Stack(
+                children: <Widget>[
+                  Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Login',
+                        style: TextStyle(color: Colors.white),
+                      )),
+                  Visibility(
+                    visible: _isLoading,
+                    child: Align(
+                      alignment: Alignment(0.25, 0.0),
+                      child: Container(
+                          margin:
+                              const EdgeInsets.only(left: Dimens.smallSpacing),
+                          width: 20.0,
+                          height: 20.0,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2.0,
+                            valueColor:
+                                new AlwaysStoppedAnimation<Color>(Colors.white),
+                          )),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             textColor: Colors.white,
             color: CustomColors.accentColor,

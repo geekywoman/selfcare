@@ -1,4 +1,5 @@
 class Dimens {
+  static const double veryLargeSpacing = 42.0;
   static const double largeSpacing = 32.0;
   static const double mediumSpacing = 16.0;
   static const double smallSpacing = 8.0;
