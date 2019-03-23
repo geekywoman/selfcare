@@ -17,6 +17,7 @@ class Dimens {
   static const double dateSize = 18.0;
 
   static const double titleSize = 20.0;
+  static const double allergyTitleSize = 18.0;
   static const double descriptionSize = 16.0;
   static const double treatmentSize = 14.0;
 
