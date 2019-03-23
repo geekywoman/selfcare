@@ -27,6 +27,7 @@ dependencies:
   flutter_svg: ^0.12.0
   intl: ^0.15.7
   fimber: ^0.1.11
+  flare_flutter: ^1.3.4
 
 dev_dependencies:
   flutter_test:
@@ -52,6 +53,7 @@ flutter:
   - assets/menu/menu_clinical_result.svg
   - assets/menu/menu_medical_history.svg
   - assets/menu/menu_my_treatment.svg
+  - assets/Trofeo.flr2d
 
   fonts:
   - family: Archivo
