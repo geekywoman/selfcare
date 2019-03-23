@@ -1,7 +1,7 @@
+import 'package:fimber/fimber.dart';
 import 'package:flutter/material.dart';
 import 'package:selfcare/pages/login_page.dart';
 import 'package:selfcare/resources/colors.dart';
-import 'package:fimber/fimber.dart';
 
 void main() {
   Fimber.plantTree(DebugTree());
@@ -11,12 +11,8 @@ void main() {
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
 
-
-
   @override
   Widget build(BuildContext context) {
-
-
     return MaterialApp(
       title: 'SelfCare',
       theme: ThemeData(
