@@ -59,7 +59,7 @@ Widget vaccineSvg = SvgPicture.asset(
 
 Widget bloodSvg = SvgPicture.asset(
   'assets/blood_drop.svg',
-  height: Dimens.logoIconSize,
+  height: 200.0,
 );
 
 String menuMyTreatmentSvgPath = 'assets/menu/menu_my_treatment.svg';
