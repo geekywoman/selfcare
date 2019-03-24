@@ -15,10 +15,6 @@ class ResultsBody extends StatelessWidget {
     ReturnData returnData = NetworkUtils.instance.returnData;
     return Column(
       children: <Widget>[
-        _buildResultItem(bloodDropSvg, "Blood tests", true, false),
-        _buildResultItem(radioGraphicSvg, "Radiographics", false, false),
-        _buildResultItem(measurementSvg, "Measurements", false, false),
-        _buildResultItem(avatarSvg, "Self assessment", false, true),
         GestureDetector(
             onTap: () {
               Navigator.push(
@@ -27,10 +23,17 @@ class ResultsBody extends StatelessWidget {
                       builder: (context) =>
                           BloodTestListPage(returnData.bloodworksData)));
             },
-            child: _buildResultItem(bloodDropSvg, "Blood tests", true)),
-        _buildResultItem(radioGraphicSvg, "Radiographics", false),
-        _buildResultItem(measurementSvg, "Measurements", false),
-        _buildResultItem(avatarSvg, "Self assessment", false),
+            child: _buildResultItem(bloodDropSvg, "Blood tests", true, false)),
+        _buildResultItem(radioGraphicSvg, "Radiographics", false, false),
+        _buildResultItem(measurementSvg, "Measurements", false, false),
+        GestureDetector(
+          onTap: () {
+            _launchURL();
+          },
+            child: _buildResultItem(avatarSvg, "Self assessment", false, true)
+        ),
+
+
       ],
     );
   }
@@ -41,41 +44,35 @@ class ResultsBody extends StatelessWidget {
           left: Dimens.mediumSpacing,
           right: Dimens.mediumSpacing,
           top: Dimens.mediumSpacing),
-      child: GestureDetector(
-        onTap: () {
-          if (!selfAssessment) return;
-          _launchURL();
-        },
-        child: Card(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(Dimens.largeSpacing),
-                    child: icon,
-                  ),
-                  Text(
-                    title,
-                    style: CustomStyles.treatmentTitleStyle,
-                  ),
-                ],
-              ),
-              Visibility(
-                visible: newTest,
-                child: Container(
-                  margin: const EdgeInsets.only(right: Dimens.mediumSpacing),
-                  width: Dimens.tinyIconSize,
-                  height: Dimens.tinyIconSize,
-                  decoration: BoxDecoration(
-                    color: CustomColors.accentColor,
-                    shape: BoxShape.circle,
-                  ),
+      child: Card(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(Dimens.largeSpacing),
+                  child: icon,
+                ),
+                Text(
+                  title,
+                  style: CustomStyles.treatmentTitleStyle,
+                ),
+              ],
+            ),
+            Visibility(
+              visible: newTest,
+              child: Container(
+                margin: const EdgeInsets.only(right: Dimens.mediumSpacing),
+                width: Dimens.tinyIconSize,
+                height: Dimens.tinyIconSize,
+                decoration: BoxDecoration(
+                  color: CustomColors.accentColor,
+                  shape: BoxShape.circle,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
