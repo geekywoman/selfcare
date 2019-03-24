@@ -50,7 +50,6 @@ class _LoginState extends State<LoginPage> {
         initialValue: socialSecurityNumber,
         decoration: InputDecoration(
           prefixIcon: Icon(Icons.person, size: Dimens.smallIconSize),
-          hintText: 'Social security number',
           labelText: 'Social security number',
         ),
       ),

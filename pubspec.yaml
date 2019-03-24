@@ -64,6 +64,7 @@ flutter:
   - assets/doctor.svg
   - assets/hospital.svg
   - assets/vaccine.svg
+  - assets/blood_drop.svg
 
   fonts:
   - family: Archivo
