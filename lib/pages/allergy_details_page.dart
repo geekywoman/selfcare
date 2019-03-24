@@ -32,6 +32,7 @@ class _AllergyDetailPageState extends State<AllergyDetailPage> {
     );
   }
 
+  /// Categories for allergies
   Widget _buildHeader() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -52,6 +53,7 @@ class _AllergyDetailPageState extends State<AllergyDetailPage> {
     );
   }
 
+  /// A list of all allergies that the user has
   Widget _buildListView(List<AllergyData> allergyData) {
     return ListView.builder(
         shrinkWrap: true,

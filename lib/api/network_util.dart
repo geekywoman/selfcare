@@ -15,6 +15,7 @@ class NetworkUtils {
 
   ReturnData returnData;
 
+  /// Get patient API call to receive the patient data
   Future<PatientResponse> getPatient(String socialSecurityNumber) async {
     final response = await http.get(
         'http://healthapi.hc.t.is/api/PatientData/GetPatient/$socialSecurityNumber');

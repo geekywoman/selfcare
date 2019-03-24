@@ -56,6 +56,7 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
         Container(
           width: Dimens.logoIconSize,
           height: showReward ? 100.0 : 0,
+          /// Trophy animation from Flare 2 Dimensions
           child: Visibility(
             child: FlareActor(
               "assets/trophee.flr",
@@ -71,6 +72,7 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
     );
   }
 
+  /// Check if all treatments are checked, to show the trophy
   bool _areAllTreatmentChecked(List<TreatmentPlan> treatmentPlans) {
     bool result = true;
     treatmentPlans.forEach((treatmentPlan) {
@@ -83,6 +85,7 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
     return result;
   }
 
+  /// Show a list of treatment plans and their treatment items
   Widget _buildTreatmentPlans(List<TreatmentPlan> treatmentPlans) {
     return Expanded(
       child: ListView.builder(
@@ -106,6 +109,7 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
     );
   }
 
+  /// Build a list of treatment items
   Widget _buildTreatmentItems(List<TreatmentItem> treatmentItems) {
     return ListView.builder(
         shrinkWrap: true,
@@ -123,6 +127,7 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
         });
   }
 
+  /// Build a list of treatments to go through all the treatment items
   Widget _buildTreatments(List<Treatment> treatments, String treatmentType) {
     return ListView.builder(
         shrinkWrap: true,
@@ -133,6 +138,7 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
         });
   }
 
+  /// Build each treatment item with a title and a checkbox
   Widget _buildTreatmentItem(Treatment treatment, String treatmentType) {
     return Container(
       child: GestureDetector(

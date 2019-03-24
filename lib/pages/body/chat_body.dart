@@ -16,6 +16,7 @@ class _ChatBodyState extends State<ChatBody> {
     return _buildBody();
   }
 
+  /// Chat body demo screen
   Widget _buildBody() {
     return Padding(
       padding: const EdgeInsets.all(Dimens.smallSpacing),

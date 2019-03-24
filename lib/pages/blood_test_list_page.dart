@@ -23,7 +23,8 @@ class _BloodTestListState extends State<BloodTestListPage> {
       body: _buildBody(),
     );
   }
-
+  /// List of blood tests the user has gone to in the past.
+  /// Has a purple dot the the blood test data is new
   Widget _buildBody() {
     List<BloodWorkData> data = widget.bloodworksData;
     return ListView.builder(
@@ -33,6 +34,7 @@ class _BloodTestListState extends State<BloodTestListPage> {
         });
   }
 
+  /// List item for blood tests
   Widget _buildResultItem(BloodWorkData data, bool newTest) {
     return Column(
       children: <Widget>[

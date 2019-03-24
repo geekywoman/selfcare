@@ -120,6 +120,7 @@ class _LoginState extends State<LoginPage> {
     );
   }
 
+  /// Login with user's kennitala and call the API for data
   void _login() {
     setState(() {
       _isLoading = true;
@@ -128,11 +129,12 @@ class _LoginState extends State<LoginPage> {
     NetworkUtils.instance.getPatient(socialSecurityNumber).then((value) {
       print("success");
       NetworkUtils.instance.returnData = value.returnData;
-      _navigateToMyTreatment();
+      _navigateToHomePage();
     });
   }
 
-  void _navigateToMyTreatment() {
+  /// Navigate to the home page that contains the user's data
+  void _navigateToHomePage() {
     Navigator.pushReplacement(
         context, CupertinoPageRoute(builder: (context) => ContainerPage()));
   }

@@ -8,6 +8,7 @@ class BottomAppBarItem {
   String title;
 }
 
+/// Bottom navigation bar to navigate between screens
 class CustomBottomAppBar extends StatefulWidget {
   CustomBottomAppBar({
     this.items,

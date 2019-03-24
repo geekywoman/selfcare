@@ -11,6 +11,8 @@ class HistoryBody extends StatefulWidget {
 }
 
 class _HistoryBodyState extends State<HistoryBody> {
+  /// A list of history categories
+  /// User can have access to all of his medical history data
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,6 +25,7 @@ class _HistoryBodyState extends State<HistoryBody> {
     );
   }
 
+  /// Build each medical history item.
   Widget _buildHistoryItem(Widget icon, String title) {
     return Padding(
       padding: const EdgeInsets.only(

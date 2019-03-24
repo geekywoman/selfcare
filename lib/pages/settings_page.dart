@@ -29,6 +29,7 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
+  /// Build notification settings view
   Widget _buildNotifications() {
     return Column(
       children: <Widget>[
