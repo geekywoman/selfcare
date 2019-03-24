@@ -30,13 +30,10 @@ class ResultsBody extends StatelessWidget {
         _buildResultItem(radioGraphicSvg, "Radiographics", false),
         _buildResultItem(measurementSvg, "Measurements", false),
         GestureDetector(
-          onTap: () {
-            _launchURL();
-          },
-            child: _buildResultItem(avatarSvg, "Self assessment", false)
-        ),
-
-
+            onTap: () {
+              _launchURL();
+            },
+            child: _buildResultItem(avatarSvg, "Self assessment", false)),
       ],
     );
   }
@@ -84,7 +81,8 @@ class ResultsBody extends StatelessWidget {
 
   /// Open a self assessment documentation. Later this would be done inside the app to protect the user's data
   _launchURL() async {
-    const url = 'https://docs.google.com/forms/d/e/1FAIpQLSfYgxYhBlycVzy2r0j0Pvg2dGQZzfhZOn61n1HhoiRo9eUzUw/viewform';
+    const url =
+        'https://docs.google.com/forms/d/e/1FAIpQLSfYgxYhBlycVzy2r0j0Pvg2dGQZzfhZOn61n1HhoiRo9eUzUw/viewform';
     if (await canLaunch(url)) {
       await launch(url);
     } else {

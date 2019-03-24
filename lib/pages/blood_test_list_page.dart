@@ -25,6 +25,7 @@ class _BloodTestListState extends State<BloodTestListPage> {
       body: _buildBody(),
     );
   }
+
   /// List of blood tests the user has gone to in the past.
   /// Has a purple dot the the blood test data is new
   Widget _buildBody() {

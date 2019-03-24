@@ -56,6 +56,7 @@ class _MyTreatmentPageStage extends State<TreatmentBody> {
         Container(
           width: Dimens.logoIconSize,
           height: showReward ? 100.0 : 0,
+
           /// Trophy animation from Flare 2 Dimensions
           child: Visibility(
             child: FlareActor(
