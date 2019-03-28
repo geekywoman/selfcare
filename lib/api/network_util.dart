@@ -34,7 +34,8 @@ class NetworkUtils {
   Future<String> getNaturalLanguageKeywords(String chatText) async {
     Map<String, String> headers = {
       "Authorization": "Basic YXBpa2V5OlhLX2dla2lNc1hrUDFJNFNPd2dTX3dsZVpLdWFPR2tEUG9YcXNIdnJKZWll",
-      "Content-Type": "application/x-www-form-urlencoded"};
+      "Content-Type": "application/json",
+      "Accept" : "application/json"};
 
     Map body = {
       "text": "$chatText",
