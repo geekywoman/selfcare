@@ -10,6 +10,9 @@ import 'package:selfcare/resources/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ResultsBody extends StatelessWidget {
+  /// Medical results view
+  /// This view gives the user access to all of his medical results
+  /// including blood tests, x-rays and measurements
   @override
   Widget build(BuildContext context) {
     ReturnData returnData = NetworkUtils.instance.returnData;
@@ -23,22 +26,20 @@ class ResultsBody extends StatelessWidget {
                       builder: (context) =>
                           BloodTestListPage(returnData.bloodworksData)));
             },
-            child: _buildResultItem(bloodDropSvg, "Blood tests", true, false)),
-        _buildResultItem(radioGraphicSvg, "Radiographics", false, false),
-        _buildResultItem(measurementSvg, "Measurements", false, false),
+            child: _buildResultItem(bloodDropSvg, "Blood tests", true)),
+        _buildResultItem(radioGraphicSvg, "Radiographics", false),
+        _buildResultItem(measurementSvg, "Measurements", false),
         GestureDetector(
-          onTap: () {
-            _launchURL();
-          },
-            child: _buildResultItem(avatarSvg, "Self assessment", false, true)
-        ),
-
-
+            onTap: () {
+              _launchURL();
+            },
+            child: _buildResultItem(avatarSvg, "Self assessment", false)),
       ],
     );
   }
 
-  Widget _buildResultItem(Widget icon, String title, bool newTest, bool selfAssessment) {
+  /// Build each result item with an icon and a title
+  Widget _buildResultItem(Widget icon, String title, bool newTest) {
     return Padding(
       padding: const EdgeInsets.only(
           left: Dimens.mediumSpacing,
@@ -78,8 +79,10 @@ class ResultsBody extends StatelessWidget {
     );
   }
 
+  /// Open a self assessment documentation. Later this would be done inside the app to protect the user's data
   _launchURL() async {
-    const url = 'https://docs.google.com/forms/d/e/1FAIpQLSfYgxYhBlycVzy2r0j0Pvg2dGQZzfhZOn61n1HhoiRo9eUzUw/viewform';
+    const url =
+        'https://docs.google.com/forms/d/e/1FAIpQLSfYgxYhBlycVzy2r0j0Pvg2dGQZzfhZOn61n1HhoiRo9eUzUw/viewform';
     if (await canLaunch(url)) {
       await launch(url);
     } else {

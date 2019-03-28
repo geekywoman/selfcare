@@ -15,6 +15,7 @@ class ContainerPage extends StatefulWidget {
   _ContainerPageState createState() => _ContainerPageState();
 }
 
+/// Container page that handles the navigation between screens
 class _ContainerPageState extends State<ContainerPage> {
   static List<BottomAppBarItem> _bottomBarItems = [
     BottomAppBarItem(svgPath: menuMyTreatmentSvgPath, title: 'Treatment'),

@@ -26,6 +26,7 @@ class _AppointmentBodyState extends State<AppointmentBody> {
     );
   }
 
+  /// A list of all future appointments
   Widget _buildAppointmentList(List<AppointmentData> appointments) {
     return Expanded(
       child: ListView.builder(

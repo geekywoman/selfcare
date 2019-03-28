@@ -3,6 +3,7 @@ import 'package:selfcare/model/treatment.dart';
 import 'package:selfcare/resources/dimens.dart';
 import 'package:selfcare/resources/images.dart';
 
+/// Dummy data
 const String fureosemideInfo =
     'Furosemide is a loop diuretic (water pill) that prevents your body from absorbing too much salt. This allows the salt to instead be passed in your urine. Furosemide is used to treat fluid retention (edema) in people with congestive heart failure, liver disease, or a kidney disorder such as nephrotic syndrome.Furosemide is also used to treat high blood pressure (hypertension).';
 
@@ -38,12 +39,14 @@ class TreatmentDetailsPage extends StatelessWidget {
     );
   }
 
+  /// Build header view with icon
   Widget _buildImageHeader() {
     return Container(
         margin: const EdgeInsets.only(top: Dimens.mediumSpacing),
         child: medicineSvg);
   }
 
+  /// Description view
   Widget _buildDescription() {
     return Container(
       margin: const EdgeInsets.only(top: Dimens.mediumSpacing),

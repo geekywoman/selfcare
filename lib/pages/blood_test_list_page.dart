@@ -26,6 +26,8 @@ class _BloodTestListState extends State<BloodTestListPage> {
     );
   }
 
+  /// List of blood tests the user has gone to in the past.
+  /// Has a purple dot the the blood test data is new
   Widget _buildBody() {
     List<BloodWorkData> data = widget.bloodworksData;
     return ListView.builder(
@@ -35,6 +37,7 @@ class _BloodTestListState extends State<BloodTestListPage> {
         });
   }
 
+  /// List item for blood tests
   Widget _buildResultItem(BloodWorkData data, bool newTest) {
     String dateFormatted =
         DateFormat('dd.MM.yy').format(DateTime.parse(data.testDate));
