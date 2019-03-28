@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:collection';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
@@ -31,11 +30,12 @@ class NetworkUtils {
     }
   }
 
-  Future<String> getNaturalLanguageKeywords(String chatText) async {
+  Future<dynamic> getNaturalLanguageKeywords(String chatText) async {
     Map<String, String> headers = {
-      "Authorization": "Basic YXBpa2V5OlhLX2dla2lNc1hrUDFJNFNPd2dTX3dsZVpLdWFPR2tEUG9YcXNIdnJKZWll",
-      "Content-Type": "application/json",
-      "Accept" : "application/json"};
+      "Authorization":
+          "Basic YXBpa2V5OlhLX2dla2lNc1hrUDFJNFNPd2dTX3dsZVpLdWFPR2tEUG9YcXNIdnJKZWll",
+      "Content-Type": "application/json; charset=utf-8"
+    };
 
     Map body = {
       "text": "$chatText",
@@ -45,7 +45,7 @@ class NetworkUtils {
         "concepts": {},
         "entities": {},
         "keywords": {}
-    }
+      }
     };
 
     final response = await http.post(
@@ -53,6 +53,7 @@ class NetworkUtils {
         headers: headers,
         body: json.encode(body));
 
+    print("response ${response.statusCode} ${response.reasonPhrase}");
     if (response.statusCode == 200) {
       // If server returns an OK response, parse the JSON
       return json.decode(response.body);
