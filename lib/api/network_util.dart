@@ -64,7 +64,7 @@ class NetworkUtils {
   }
 
 
-  Future<String> getAnswerFromBot(String chatText) async {
+  Future<Map<String, dynamic>> getAnswerFromBot(String chatText) async {
     Map<String, String> headers = {
       "Authorization": "Basic YXBpa2V5OnZ1dWlrZzdEQ0RpTVRqUVdxcjc1OFJXLUg2cGdDVlBXdkRGRUJ4MjRiN2dL",
       "Content-Type": "application/json",
