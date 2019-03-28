@@ -61,4 +61,33 @@ class NetworkUtils {
       throw Exception('Error: getNaturalLanguageKeywords');
     }
   }
+
+
+  Future<String> getAnswerFromBot(String chatText) async {
+    Map<String, String> headers = {
+      "Authorization": "Basic YXBpa2V5OnZ1dWlrZzdEQ0RpTVRqUVdxcjc1OFJXLUg2cGdDVlBXdkRGRUJ4MjRiN2dL",
+      "Content-Type": "application/json",
+      "Accept" : "application/json"
+    };
+
+    Map body = {
+      "input" : {
+        "text" : "$chatText"
+      }
+    };
+
+    final response = await http.post(
+      "https://gateway-lon.watsonplatform.net/assistant/api/v1/workspaces/81fa7dc9-27e2-41f7-a804-f5bfdbbeb325/message?version=2018-09-20",
+      headers: headers,
+      body: json.encode(body)
+    );
+
+    if (response.statusCode == 200) {
+      // If server returns an OK response, parse the JSON
+      return json.decode(response.body);
+    } else {
+      // If that response was not OK, throw an error.
+      throw Exception('Error: getAnswerFromBot');
+    }
+  }
 }
