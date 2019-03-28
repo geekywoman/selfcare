@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:selfcare/api/network_util.dart';
+import 'package:selfcare/model/message.dart';
 import 'package:selfcare/resources/dimens.dart';
 
 class ChatBody extends StatefulWidget {
@@ -11,16 +12,10 @@ class ChatBody extends StatefulWidget {
 class _ChatBodyState extends State<ChatBody> {
   final TextEditingController _textController = TextEditingController();
   bool _isComposing = false;
+  List<Message> _messages = [Message('Hello, how do you feel today?', true)];
 
   @override
   Widget build(BuildContext context) {
-    NetworkUtils.instance
-        .getNaturalLanguageKeywords("I have a headache")
-        .then((value) {
-      print("success");
-      print(value);
-    });
-
     return _buildBody();
   }
 
@@ -31,41 +26,35 @@ class _ChatBodyState extends State<ChatBody> {
       child: Column(
         children: <Widget>[
           Flexible(
-              child: ListView(
+              child: ListView.builder(
             reverse: true,
-            children: <Widget>[
-              ListTile(
-                title: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    color: CupertinoColors.activeBlue,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(Dimens.smallSpacing),
-                    child: Text(
-                        'Hi, I would like to ask you some question about my treatment',
-                        style: TextStyle(color: Colors.white)),
-                  ),
-                ), //todo remove dummy data
-              ),
-              ListTile(
-                title: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    color: CupertinoColors.lightBackgroundGray,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(Dimens.smallSpacing),
-                    child: Text(
-                      'Hello, how do you feel today?',
-                    ),
-                  ),
-                ), //todo remove dummy data
-              ),
-            ],
+            itemCount: _messages.length,
+            itemBuilder: (BuildContext context, int index) {
+              return _buildMessageItem(_messages[index]);
+            },
           )),
           _buildTextComposer(),
         ],
+      ),
+    );
+  }
+
+  Widget _buildMessageItem(Message message) {
+    return ListTile(
+      title: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          color: message.incoming
+              ? CupertinoColors.activeBlue
+              : CupertinoColors.lightBackgroundGray,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(Dimens.smallSpacing),
+          child: Text(message.text,
+              style: message.incoming
+                  ? TextStyle(color: Colors.white)
+                  : TextStyle(color: Colors.black)),
+        ),
       ),
     );
   }
@@ -119,6 +108,34 @@ class _ChatBodyState extends State<ChatBody> {
   }
 
   void _handleSubmitted(String text) {
-    //todo handle submission
+    _textController.clear();
+    setState(() {
+      _isComposing = false;
+      _sendMessage(text);
+      _messages.add(Message(text, false));
+      _messages.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+    });
+  }
+
+  void _sendMessage(String text) {
+    NetworkUtils.instance.getNaturalLanguageKeywords(text).then((value) {
+      print("success");
+      print(value);
+      List<String> keywords = List();
+      List<dynamic> keywordObjects = value['keywords'];
+      keywordObjects.forEach((value) {
+        if (value['relevance'] > 0.5) {
+          String relevantKeyword = value['text'];
+          keywords.add(relevantKeyword);
+          print("relevant keyword found $relevantKeyword");
+        } else {
+          print("not relevant enough");
+        }
+      });
+      setState(() {
+        _messages.add(Message("Keywords found ${keywords.toString()}", true));
+        _messages.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+      });
+    });
   }
 }
