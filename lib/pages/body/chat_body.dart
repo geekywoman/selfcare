@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:selfcare/api/network_util.dart';
 import 'package:selfcare/resources/dimens.dart';
 
 class ChatBody extends StatefulWidget {
@@ -13,6 +14,13 @@ class _ChatBodyState extends State<ChatBody> {
 
   @override
   Widget build(BuildContext context) {
+    NetworkUtils.instance
+        .getNaturalLanguageKeywords("I have a headache")
+        .then((value) {
+      print("success");
+      print(value);
+    });
+
     return _buildBody();
   }
 
