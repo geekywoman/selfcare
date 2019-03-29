@@ -34,7 +34,7 @@ class _ChatBodyState extends State<ChatBody> {
   Widget _buildBody() {
     return Padding(
       padding: const EdgeInsets.all(Dimens.smallSpacing),
-      child: Column
+      child: Column(
         children: <Widget>[
 //          RaisedButton(
 //              child: Text('Run test questions'),
