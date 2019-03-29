@@ -33,7 +33,7 @@ class NetworkUtils {
   Future<dynamic> getNaturalLanguageKeywords(String chatText) async {
     Map<String, String> headers = {
       "Authorization":
-          "Basic YXBpa2V5OlhLX2dla2lNc1hrUDFJNFNPd2dTX3dsZVpLdWFPR2tEUG9YcXNIdnJKZWll",
+          "Basic YXBpa2V5OnJIaVQ5YmMzSU1POUxyZGhTQWpRamxlaGRKN295cXBqaXkzMEtlRHl4d0xJ",
       "Content-Type": "application/json; charset=utf-8"
     };
 

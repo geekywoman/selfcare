@@ -20,10 +20,9 @@ class _ChatBodyState extends State<ChatBody> {
   }
 
   void _sendTestQuestions() {
-//    _handleSubmitted('Hi! I am pregnant. What should I do now?');
-//    _handleSubmitted('Hi! I am expecting a baby. What should I do now?');
+    _handleSubmitted('Hi! I am pregnant. What should I do now?');
 //    _handleSubmitted('I feel very nauseous.');
-    _handleSubmitted('I have some backpain, what painkillers can I use?');
+//    _handleSubmitted('I have some backpain, what painkillers can I use?');
 //    _handleSubmitted('My baby is moving less then before, is this normal?');
 //    _handleSubmitted(
 //        'I have really bad cramps, it‘s like period pain but a lot worse. What should I do?');
@@ -135,32 +134,16 @@ class _ChatBodyState extends State<ChatBody> {
   }
 
   void _sendMessage(String text) {
-    NetworkUtils.instance.getNaturalLanguageKeywords(text).then((value) {
-      print(value);
-      List<String> keywords = List();
-      List<dynamic> keywordObjects = value['keywords'];
-      keywordObjects.forEach((value) {
-        if (value['relevance'] > 0.5) {
-          String relevantKeyword = value['text'];
-          keywords.add(relevantKeyword);
-          print("relevant keyword found $relevantKeyword");
-        } else {
-          print("not relevant enough");
-        }
-      });
-//      _showResponse("Keywords found ${keywords.toString()}");
-      _sendAnswer(text);
-    });
-  }
-
-  void _sendAnswer(String text) {
+    print("Question $text");
     NetworkUtils.instance.getAnswerFromBot(text).then((value) {
+      print(value.toString());
       _showResponse(value['output']['text']
           .toString()
           .replaceAll("[", "")
           .replaceAll("]", ""));
     });
   }
+
 
   void _showResponse(String response) {
     setState(() {
