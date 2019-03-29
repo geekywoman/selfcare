@@ -21,26 +21,26 @@ class _ChatBodyState extends State<ChatBody> {
 
   void _sendTestQuestions() {
     _handleSubmitted('Hi! I am pregnant. What should I do now?');
-//    _handleSubmitted('I feel very nauseous.');
-//    _handleSubmitted('I have some backpain, what painkillers can I use?');
-//    _handleSubmitted('My baby is moving less then before, is this normal?');
-//    _handleSubmitted(
-//        'I have really bad cramps, it‘s like period pain but a lot worse. What should I do?');
-//    _handleSubmitted(
-//        'Hi I have had several really bad headaches last weeks, and I also feel very dizzy, should I talk to a doctor?');
+    _handleSubmitted('I feel very nauseous.');
+    _handleSubmitted('I have some backpain, what painkillers can I use?');
+    _handleSubmitted('My baby is moving less then before, is this normal?');
+    _handleSubmitted(
+        'I have really bad cramps, it‘s like period pain but a lot worse. What should I do?');
+    _handleSubmitted(
+        'Hi I have had several really bad headaches last weeks, and I also feel very dizzy, should I talk to a doctor?');
   }
 
   /// Chat body demo screen
   Widget _buildBody() {
     return Padding(
       padding: const EdgeInsets.all(Dimens.smallSpacing),
-      child: Column(
+      child: Column
         children: <Widget>[
-          RaisedButton(
-              child: Text('Run test questions'),
-              onPressed: () {
-                _sendTestQuestions();
-              }),
+//          RaisedButton(
+//              child: Text('Run test questions'),
+//              onPressed: () {
+//                _sendTestQuestions();
+//              }),
           Flexible(
               child: ListView.builder(
             reverse: true,
